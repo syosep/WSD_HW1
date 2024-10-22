@@ -1,6 +1,6 @@
 package org.example;
 
-public interface WordManager {
+public interface WordCRUD {
     void listWord();
     void listWordByLevel(int level);
     void searchWord(String keyword);
