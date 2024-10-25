@@ -27,12 +27,14 @@ public class WordManager implements WordCRUD {
     }
 
     @Override
-    public void searchWord(String keyword) {
+    public List<Word> searchWord(String keyword) {
+        List<Word> result = new ArrayList<>();
         for (Word word : words) {
             if (word.getWord().toLowerCase().contains(keyword.toLowerCase())) {
-                System.out.println(word);
+                result.add(word);
             }
         }
+        return result;
     }
 
     @Override

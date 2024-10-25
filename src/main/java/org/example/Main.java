@@ -15,6 +15,8 @@ public class Main {
                System.out.println("1.List 2.List(level) 3.Search 4.Add 5.Modify 6.Delete 7.Save file 0.Exit\n");
                System.out.print("=> 원하는 메뉴는? ");
                int choice = in.nextInt();
+               in.nextLine();
+
                switch (choice) {
                    case 1:
                        manager.listWord();
@@ -22,6 +24,7 @@ public class Main {
                    case 2:
                        System.out.print("=> 레벨(1:초급, 2:중급, 3:고급) 선택 : ");
                        int level = in.nextInt();
+                       in.nextLine();
                        manager.listWordByLevel(level);
                        break;
                    case 3:
@@ -32,10 +35,13 @@ public class Main {
                    case 4:
                        System.out.print("=> 난이도(1,2,3) & 새 단어 입력 : ");
                        int addlevel = Integer.parseInt(in.next());
+                       in.nextLine();
                        String word = in.nextLine();
                        System.out.print("뜻 입력 : ");
                        String meaning = in.nextLine();
                        manager.addWord(word, meaning, addlevel);
+                       System.out.println("* 추가 성공!");
+                       break;
                    case 5:
                        System.out.print("=> 수정할 단어 검색 : ");
                        String mKeyword = in.nextLine();
@@ -66,7 +72,9 @@ public class Main {
                        System.out.println("=> 뜻 입력 : ");
                        String newMeaning = in.nextLine();
 
-                       manager.modifyWord(selectedWord.getId(), newMeaning);
+                       manager.modifyWord(selectedWord.getId(), selectedWord.getWord(), newMeaning, selectedWord.getLevel());
+                       System.out.println("* 수정 성공!");
+                       break;
                }
         }
     }
