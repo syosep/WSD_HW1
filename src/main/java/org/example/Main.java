@@ -8,7 +8,7 @@ public class Main {
         WordCRUD manager = new WordCRUD();
         Scanner in = new Scanner(System.in);
 
-        manager.loadFile("./src/main/java/org/example/WordList.txt");
+        manager.loadFile("./src/main/java/org/example/WordList");
 
         while (true) {
             System.out.println("*** MY VOCA ***\n");
@@ -85,7 +85,41 @@ public class Main {
                             System.out.println("잘못된 선택입니다.");
                         }
                     }
+                    break;
+                case 6:
+                    System.out.print("\n=> 삭제할 단어 검색 : ");
+                    String deleteWord = in.nextLine();
+                    List<Word> deleteResults = manager.search(deleteWord);
+
+                    if (deleteResults.isEmpty()) {
+                        System.out.println("검색한 단어가 존재하지 않습니다.");
+                    } else {
+                        System.out.println("-------------------------------");
+                        for (int i = 0; i < deleteResults.size(); i++) {
+                            System.out.println((i + 1) + " * " + deleteResults.get(i));
+                        }
+                        System.out.println("-------------------------------");
+                        System.out.println("=> 삭제할 번호 선택 : ");
+                        int deleteChoice = in.nextInt();
+                        in.nextLine();
+
+                        if (deleteChoice > 0 && deleteChoice <= deleteResults.size()) {
+                            Word selectedWord = deleteResults.get(deleteChoice - 1);
+                            manager.deleteWord(selectedWord.getId());
+                            System.out.println("* 삭제 성공!");
+                        }
+                        else {
+                            System.out.println("잘못된 선택입니다.");
+                        }
+                    }
+                    break;
+                case 7:
+                    manager.saveFile(("./src/main/java/org/example/WordList"));
+                    break;
+                default:
+                    System.out.println("잘못된 선택입니다.");
             }
         }
+        in.close();
     }
 }
