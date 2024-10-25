@@ -1,5 +1,8 @@
 package org.example;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class WordManager implements WordCRUD {
@@ -62,8 +65,16 @@ public class WordManager implements WordCRUD {
     }
 
     @Override
-    public void saveFile(String fileName) {
-
+    public void saveFile() {
+        String fileName = "WordList.txt";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            for (Word word : words) {
+                writer.write(word.getId() + "," + word.getWord() + "," + word.getMeaning() + "," + word.getLevel());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("파일 저장 중 오류 발생: " + e.getMessage());
+        }
     }
 
     @Override

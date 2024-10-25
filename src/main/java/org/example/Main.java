@@ -104,6 +104,10 @@ public class Main {
                        manager.deleteWord(selectedDWord.getId());
                        System.out.println("* 삭제 성공!");
                        break;
+                   case 7:
+                       manager.saveFile();
+                       System.out.println("* 파일저장 완료!");
+                       break;
                }
         }
     }
