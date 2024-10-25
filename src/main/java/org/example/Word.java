@@ -45,8 +45,12 @@ public class Word {
         this.meaning = meaning;
     }
 
+    private String levelToStars() {
+        return "*".repeat(level);
+    }
+
     @Override
     public String toString() {
-        return id + " " + level + " " + word + " " + meaning;
+        return id + " " + levelToStars() + " " + word + " " + meaning;
     }
 }

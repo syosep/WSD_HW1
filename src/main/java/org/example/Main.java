@@ -10,7 +10,7 @@ public class Main {
 
         System.out.println("*** MY VOCA ***\n");
 
-        manager.loadFile("./src/main/java/org/example/WordList");
+        manager.loadFile("./src/main/java/org/example/WordList.txt");
 
         while (true) {
             System.out.println("\n1. List  2. List(level)  3. Search  4. Add  5. Modify  6. Delete  7. Save file  0. Exit\n");
@@ -115,7 +115,7 @@ public class Main {
                     }
                     break;
                 case 7:
-                    manager.saveFile(("./src/main/java/org/example/WordList"));
+                    manager.saveFile(("./src/main/java/org/example/WordList.txt"));
                     break;
                 default:
                     System.out.println("잘못된 선택입니다.");
