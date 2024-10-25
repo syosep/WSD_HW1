@@ -1,32 +1,26 @@
 package org.example;
 
-public class Word {
-   private int id;
-   private int level;
-   private String word;
-   private String meaning;
+import java.util.List;
 
-   public Word(int id, int level, String word, String meaning) {
-       this.id = id;
-       this.level = level;
-       this.word = word;
-       this.meaning = meaning;
-   }
+public class Word {
+    private int id;
+    private int level;
+    private String word;
+    private List<String> meanings;
+
+    public Word(int id, int level, String word, List<String> meanings) {
+        this.id = id;
+        this.level = level;
+        this.word = word;
+        this.meanings = meanings;
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getLevel() {
         return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public String getWord() {
@@ -37,20 +31,21 @@ public class Word {
         this.word = word;
     }
 
-    public String getMeaning() {
-        return meaning;
+    public List<String> getMeanings() {
+        return meanings;
     }
 
-    public void setMeaning(String meaning) {
-        this.meaning = meaning;
+    public void setMeanings(List<String> meanings) {
+        this.meanings = meanings;
     }
 
+    // 레벨을 '*' 기호로 변환하는 메서드
     private String levelToStars() {
         return "*".repeat(level);
     }
 
     @Override
     public String toString() {
-        return id + " " + levelToStars() + " " + word + " " + meaning;
+        return id + " " + levelToStars() + " " + word + " " + String.join(", ", meanings);
     }
 }

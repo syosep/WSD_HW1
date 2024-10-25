@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class WordCRUD implements ICRUD {
@@ -15,7 +16,8 @@ public class WordCRUD implements ICRUD {
 
     @Override
     public void addWord(int level, String word, String meaning) {
-        Word newWord = new Word(nextId, level, word, meaning);
+        List<String> meanings = Arrays.asList(meaning.split(", "));
+        Word newWord = new Word(nextId, level, word, meanings);
         words.add(newWord);
         nextId++;
         System.out.println("* 추가 성공!");
@@ -23,10 +25,11 @@ public class WordCRUD implements ICRUD {
 
     @Override
     public void modifyWord(int wordId, String newWord, String newMeaning) {
+        List<String> meanings = Arrays.asList(newMeaning.split(", "));
         for (Word word : words) {
             if (word.getId() == wordId) {
                 word.setWord(newWord);
-                word.setMeaning(newMeaning);
+                word.setMeanings(meanings);
                 System.out.println("* 수정 성공!");
                 return;
             }
@@ -70,7 +73,8 @@ public class WordCRUD implements ICRUD {
     public void saveFile(String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (Word word : words) {
-                writer.write(word.getId() + "," + word.getLevel() + "," + word.getWord() + "," + word.getMeaning());
+                String meanings = String.join(", ", word.getMeanings());
+                writer.write(word.getId() + "," + word.getLevel() + "," + word.getWord() + "," + meanings);
                 writer.newLine();
             }
             System.out.println("* 파일저장 완료!");
@@ -84,12 +88,16 @@ public class WordCRUD implements ICRUD {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] wordData = line.split(",");
+                String[] wordData = line.split(",", 4);
+                if (wordData.length < 4) {
+                    System.out.println("잘못된 데이터 형식: " + line);
+                    continue;
+                }
                 int id = Integer.parseInt(wordData[0]);
                 int level = Integer.parseInt(wordData[1]);
                 String word = wordData[2];
-                String meaning = wordData[3];
-                words.add(new Word(id, level, word, meaning));
+                List<String> meanings = Arrays.asList(wordData[3].split(", "));
+                words.add(new Word(id, level, word, meanings));
                 nextId = Math.max(nextId, id + 1);
                 count++;
             }
