@@ -10,7 +10,7 @@ public class Main {
            WordManager manager = new WordManager();
            Scanner in = new Scanner(System.in);
 
-           System.out.println("*** MY VOCA ***");
+           System.out.println("*** MY VOCA **\n");
            while (true) {
                System.out.println("1.List 2.List(level) 3.Search 4.Add 5.Modify 6.Delete 7.Save file 0.Exit\n");
                System.out.print("=> 원하는 메뉴는? ");
@@ -37,11 +37,27 @@ public class Main {
                        break;
                    case 4:
                        System.out.print("=> 난이도(1,2,3) & 새 단어 입력 : ");
-                       int addlevel = Integer.parseInt(in.next());
-                       in.nextLine();
-                       String word = in.nextLine();
-                       System.out.print("뜻 입력 : ");
+                       String input = in.nextLine();
+                       String[] parts = input.split(" ", 2);
+
+                       if (parts.length < 2) {
+                           System.out.println("잘못된 입력입니다.");
+                           break;
+                       }
+
+                       int addlevel;
+                       try {
+                           addlevel = Integer.parseInt(parts[0]);
+                       } catch (NumberFormatException e) {
+                           System.out.println("잘못된 입력입니다.");
+                           break;
+                       }
+
+                       String word = parts[1];
+
+                       System.out.print("=> 뜻 입력 : ");
                        String meaning = in.nextLine();
+
                        manager.addWord(word, meaning, addlevel);
                        System.out.println("* 추가 성공!");
                        break;
@@ -108,7 +124,7 @@ public class Main {
                        System.out.println("* 삭제 성공!");
                        break;
                    case 7:
-                       if (manager.saveFile()) {  // 파일 저장 성공 시 메시지 출력
+                       if (manager.saveFile()) {
                            System.out.println("* 파일저장 완료!");
                        }
                        break;

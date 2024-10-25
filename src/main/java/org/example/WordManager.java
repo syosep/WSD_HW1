@@ -40,7 +40,8 @@ public class WordManager implements WordCRUD {
 
     @Override
     public void addWord(String word, String meaning, int level) {
-        words.add(new Word(nextId++, word, meaning, level));
+        Word newWord = new Word(nextId++, word, meaning, level);
+        words.add(newWord);
     }
 
     @Override
@@ -83,16 +84,22 @@ public class WordManager implements WordCRUD {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split("\\s+", 4);
-                int id = Integer.parseInt(parts[0]);
-                int level = parts[1].length();
-                String word = parts[2];
-                String meaning = parts[3];
+                String[] parts = line.split(",", 4);
+                if (parts.length < 4) {
+                    System.out.println("오류 발생! " + line);
+                    continue;
+                }
+                int id = Integer.parseInt(parts[0].trim());
+                String word = parts[1].trim();
+                String meaning = parts[2].trim();
+                int level = Integer.parseInt(parts[3].trim());
                 words.add(new Word(id, word, meaning, level));
                 nextId = Math.max(nextId, id + 1);
             }
         } catch (IOException e) {
-            System.out.println("파일 로딩 중 오류 발생: " + e.getMessage());
+            System.out.println("오류 발생! " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("오류 발생! " + e.getMessage());
         }
     }
 }
