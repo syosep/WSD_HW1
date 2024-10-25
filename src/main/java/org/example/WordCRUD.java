@@ -9,7 +9,7 @@ public interface WordCRUD {
     void addWord(String word, String meaning, int level);
     void modifyWord(int id, String word, String meaning, int level);
     void deleteWord(int id);
-    void saveFile();
+    boolean saveFile();
     void loadFile(String fileName);
 }
 

@@ -19,7 +19,10 @@ public class Main {
 
                switch (choice) {
                    case 1:
+                       manager.loadFile("./src/main/java/org/example/WordList");
+                       System.out.println("--------------------------------");
                        manager.listWord();
+                       System.out.println("--------------------------------");
                        break;
                    case 2:
                        System.out.print("=> 레벨(1:초급, 2:중급, 3:고급) 선택 : ");
@@ -105,9 +108,15 @@ public class Main {
                        System.out.println("* 삭제 성공!");
                        break;
                    case 7:
-                       manager.saveFile();
-                       System.out.println("* 파일저장 완료!");
+                       if (manager.saveFile()) {  // 파일 저장 성공 시 메시지 출력
+                           System.out.println("* 파일저장 완료!");
+                       }
                        break;
+                   case 0:
+                       System.out.println("프로그램 종료! 다음에 만나요~");
+                       return;
+                   default:
+                       System.out.println("유효하지 않은 메뉴입니다. 다시 시도해주세요.");
                }
         }
     }

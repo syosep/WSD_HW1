@@ -1,8 +1,6 @@
 package org.example;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class WordManager implements WordCRUD {
@@ -65,20 +63,36 @@ public class WordManager implements WordCRUD {
     }
 
     @Override
-    public void saveFile() {
-        String fileName = "WordList.txt";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+    public boolean saveFile() {
+        String fileName = "./src/main/java/org/example/WordList";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (Word word : words) {
                 writer.write(word.getId() + "," + word.getWord() + "," + word.getMeaning() + "," + word.getLevel());
                 writer.newLine();
             }
+            return true;
         } catch (IOException e) {
             System.out.println("파일 저장 중 오류 발생: " + e.getMessage());
+            return false;
         }
     }
 
     @Override
     public void loadFile(String fileName) {
-
+        words.clear();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("\\s+", 4);
+                int id = Integer.parseInt(parts[0]);
+                int level = parts[1].length();
+                String word = parts[2];
+                String meaning = parts[3];
+                words.add(new Word(id, word, meaning, level));
+                nextId = Math.max(nextId, id + 1);
+            }
+        } catch (IOException e) {
+            System.out.println("파일 로딩 중 오류 발생: " + e.getMessage());
+        }
     }
 }

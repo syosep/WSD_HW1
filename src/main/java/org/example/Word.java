@@ -44,4 +44,9 @@ public class Word {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    @Override
+    public String toString() {
+        return id + " " + "*".repeat(level) + " " + word + " " + meaning;
+    }
 }
