@@ -80,6 +80,7 @@ public class WordCRUD implements ICRUD {
     }
 
     public void loadFile(String fileName) {
+        int count = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -90,8 +91,9 @@ public class WordCRUD implements ICRUD {
                 String meaning = wordData[3];
                 words.add(new Word(id, level, word, meaning));
                 nextId = Math.max(nextId, id + 1);
+                count++;
             }
-            System.out.println("=> 단어 로딩 완료!");
+            System.out.println("=> " + count + "개의 단어 로딩 완료!");
         } catch (IOException e) {
             System.out.println("로딩 오류 " + e.getMessage());
         }

@@ -8,12 +8,13 @@ public class Main {
         WordCRUD manager = new WordCRUD();
         Scanner in = new Scanner(System.in);
 
+        System.out.println("*** MY VOCA ***\n");
+
         manager.loadFile("./src/main/java/org/example/WordList");
 
         while (true) {
-            System.out.println("*** MY VOCA ***\n");
-            System.out.println("1. List  2. List(level)  3. Search  4. Add  5. Modify  6. Delete  7. Save file  0. Exit\n");
-            System.out.println("=> 원하는 메뉴는? ");
+            System.out.println("\n1. List  2. List(level)  3. Search  4. Add  5. Modify  6. Delete  7. Save file  0. Exit\n");
+            System.out.print("=> 원하는 메뉴는? ");
             int choice = in.nextInt();
             in.nextLine();
 
