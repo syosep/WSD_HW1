@@ -45,16 +45,16 @@ public class Main {
                    case 5:
                        System.out.print("=> 수정할 단어 검색 : ");
                        String mKeyword = in.nextLine();
-                       List<Word> words = manager.searchWord(mKeyword);
+                       List<Word> mWord = manager.searchWord(mKeyword);
 
-                       if (words.isEmpty()) {
+                       if (mWord.isEmpty()) {
                            System.out.println("검색한 단어가 없습니다.");
                            break;
                        }
 
                        System.out.println("--------------------------------");
-                       for (int i=0; i<words.size(); i++) {
-                           Word w = words.get(i);
+                       for (int i=0; i<mWord.size(); i++) {
+                           Word w = mWord.get(i);
                            System.out.println((i + 1) + " * " + w.getWord() + " " + w.getMeaning());
                        }
                        System.out.println("--------------------------------");
@@ -62,18 +62,47 @@ public class Main {
                        System.out.print("=> 수정할 번호 선택 : ");
                        int mIndex = in.nextInt();
                        in.nextLine();
-                       if (mIndex < 1 || mIndex > words.size()) {
+                       if (mIndex < 1 || mIndex > mWord.size()) {
                            System.out.println("유효하지 않은 번호입니다.");
                            break;
                        }
 
-                       Word selectedWord = words.get(mIndex - 1);
+                       Word selectedMWord = mWord.get(mIndex - 1);
 
                        System.out.println("=> 뜻 입력 : ");
                        String newMeaning = in.nextLine();
 
-                       manager.modifyWord(selectedWord.getId(), selectedWord.getWord(), newMeaning, selectedWord.getLevel());
+                       manager.modifyWord(selectedMWord.getId(), selectedMWord.getWord(), newMeaning, selectedMWord.getLevel());
                        System.out.println("* 수정 성공!");
+                       break;
+                   case 6:
+                       System.out.print("=> 삭제할 단어 검색 : ");
+                       String dKeyword = in.nextLine();
+                       List<Word> dWord = manager.searchWord(dKeyword);
+
+                       if (dWord.isEmpty()) {
+                           System.out.println("검색한 단어가 없습니다.");
+                           break;
+                       }
+
+                       System.out.println("--------------------------------");
+                       for (int i=0; i<dWord.size(); i++) {
+                           Word w = dWord.get(i);
+                           System.out.println((i + 1) + " * " + w.getWord() + " " + w.getMeaning());
+                       }
+                       System.out.println("--------------------------------");
+
+                       System.out.print("=> 수정할 번호 선택 : ");
+                       int dIndex = in.nextInt();
+                       in.nextLine();
+                       if (dIndex < 1 || dIndex > dWord.size()) {
+                           System.out.println("유효하지 않은 번호입니다.");
+                           break;
+                       }
+
+                       Word selectedDWord = dWord.get(dIndex - 1);
+                       manager.deleteWord(selectedDWord.getId());
+                       System.out.println("* 삭제 성공!");
                        break;
                }
         }
