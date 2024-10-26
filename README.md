@@ -2,7 +2,7 @@
 
 <h4> 실행 결과 </h4>
 
-<img src="https://github.com/syosep/WSD_HW1/blob/89e9fabeff7c568d12177cb3068d78b99b5a3e6c/src/main/java/org/example/Screenshots/001.png" height="200" width="300" alt="001">
+<img src="https://github.com/syosep/WSD_HW1/blob/89e9fabeff7c568d12177cb3068d78b99b5a3e6c/src/main/java/org/example/Screenshots/001.png" height="200" width="400" alt="001">
 <br>
 <img src="https://github.com/syosep/WSD_HW1/blob/8a94a184927b5722179d4eaec94e22ccfb378399/src/main/java/org/example/Screenshots/002.png" height="300" width="200" alt="002">
 <br>
@@ -20,6 +20,6 @@
 <br>
 <img src="https://github.com/syosep/WSD_HW1/blob/8a94a184927b5722179d4eaec94e22ccfb378399/src/main/java/org/example/Screenshots/009.png" height="200" width="200" alt="009">
 <br>
-<img src="https://github.com/syosep/WSD_HW1/blob/8a94a184927b5722179d4eaec94e22ccfb378399/src/main/java/org/example/Screenshots/010.png" height="200" width="200" alt="010">
+<img src="https://github.com/syosep/WSD_HW1/blob/8a94a184927b5722179d4eaec94e22ccfb378399/src/main/java/org/example/Screenshots/010.png" height="200" width="300" alt="010">
 <br>
-<img src="https://github.com/syosep/WSD_HW1/blob/8a94a184927b5722179d4eaec94e22ccfb378399/src/main/java/org/example/Screenshots/011.png" height="200" width="300" alt="011">
+<img src="https://github.com/syosep/WSD_HW1/blob/8a94a184927b5722179d4eaec94e22ccfb378399/src/main/java/org/example/Screenshots/011.png" height="200" width="400" alt="011">
