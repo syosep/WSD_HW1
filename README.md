@@ -2,4 +2,5 @@
 
 <h4> 실행 결과 </h4>
 
-<img src="">
+<img src="https://github.com/syosep/WSD_HW1/blob/89e9fabeff7c568d12177cb3068d78b99b5a3e6c/src/main/java/org/example/Screenshots/001.png" height="200" width="200">
+<br>
