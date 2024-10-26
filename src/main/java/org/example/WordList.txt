@@ -24,7 +24,7 @@
 24,1,thoughtlessly,생각 없이
 25,1,discard,버리다
 26,1,unfortunate,불운한
-27,1,branch,나뭇가지
 28,1,trim,다듬다
 29,3,crouch,쪼그리고 앉다
 30,2,proclaim,공언하다, 선포하다
+31,3,vulnerable,취약한, 연약한, 피해를 입기 쉬운
